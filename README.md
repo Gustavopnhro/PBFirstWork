@@ -128,4 +128,10 @@ Ao clicarmos em "Add security group rule" vamos adicionar uma regra de grupo de 
   <img src="/src/step_by_step/ec2_porta2049_udp.png">
 </div>
 
-As configurações devem ficar exatamente assim
+As configurações devem ficar exatamente assim e em seguida vamos clicar em "Launch Instance" quando o resumo da instância estiver assim:
+
+<div align="center">
+  <img src="/src/step_by_step/ec2_summary_01.png">
+</div>
+
+
