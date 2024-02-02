@@ -13,7 +13,7 @@
 #### AWS:
 - ✅ Gerar chave pública para acesso ao ambiente;
 - ✅ Criar uma instância EC2 com o sistema operacional Amazon Linux 2 (t3.small, 16 GB SSD);
-- Gerar 1 Elastic IP e anexar à instância EC2;
+- ✅ Gerar 1 Elastic IP e anexar à instância EC2;
 - ✅ Liberar as portas de comunicação para acesso público
 
 | Portas | Protocolo |
@@ -36,6 +36,7 @@
 
 ### Hands-On 🔨
 
+### Requisitos AWS:
 #### Gerar chave pública
 Na seção de "Key Pair" ou "Par de chaves" clique em "Create key pair"
 
@@ -50,7 +51,7 @@ Quando o nova seção abrir insira os dados pertinentes para a configuração co
 </div>
 
 
-### Configurando a EC2
+#### Configurando a EC2
 No módulo de EC2 da AWS temos diversas formas de iniciar uma instancia, mas vamos optar pela mais simples.
 
 Na página inicial vamos clicar em "Launch Instance"
@@ -135,7 +136,7 @@ As configurações devem ficar exatamente assim e em seguida vamos clicar em "La
 </div>
 
 
-### Criando Elastic IP
+#### Criando Elastic IP
 
 Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "Network and Security" é possível encontrar o "Elastic Ip" assim como na imagem abaixo: 
 
@@ -169,3 +170,46 @@ Após isso, selecione a instância criada no passo anterior e então vincule o e
   <img src="/src/step_by_step/elastic_ip_associate_step.png">
 </div>
 
+### Requisitos Linux:
+#### Configurar EFS:
+
+1. Vamos no módulo de EFS e então vamos clicar em "Create File System" como no exemplo abaixo:
+
+
+<div align="center">
+  <img src="/src/step_by_step/efs_01.png">
+</div>
+
+
+2. Uma janela nova vai surgir na tela permitindo que seja configurado o nome do EFS (opcional) e a VPC a que ela estará atribuída, vale atentar-se que a VPC deve sera mesma que a EC2 está configurada.
+
+<div align="center">
+  <img src="/src/step_by_step/efs_02.png">
+</div>
+
+3. Após o criar o EFS vamos clicar no seu ID para acessar as configuraçoes;
+
+<div align="center">
+  <img src="/src/step_by_step/efs_03.png">
+</div>
+
+4. Ao acessarmos o painel de configurações vamos clicar em "Access Points" para criar o ponto de conexão que as instâncias usarão;
+
+<div align="center">
+  <img src="/src/step_by_step/efs_04.png">
+</div>
+
+<div align="center">
+  <img src="/src/step_by_step/efs_05.png">
+</div>
+
+5. Ao abrir a janela de configuração do Access Point vamos configurar o nome (opcional) e ir até o final da página
+
+
+<div align="center">
+  <img src="/src/step_by_step/efs_06.png">
+</div>
+
+<div align="center">
+  <img src="/src/step_by_step/efs_07.png">
+</div>
