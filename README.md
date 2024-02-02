@@ -135,3 +135,37 @@ As configurações devem ficar exatamente assim e em seguida vamos clicar em "La
 </div>
 
 
+### Criando Elastic IP
+
+Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "Network and Security" é possível encontrar o "Elastic Ip" assim como na imagem abaixo: 
+
+<div align="center">
+  <img src="/src/step_by_step/elastic_ip_screen.png">
+</div>
+
+
+Em seguida vamos criar em "Allocate Elastic IP address"
+
+<div align="center">
+  <img src="/src/step_by_step/elastic_ip_start_button.png">
+</div>
+
+Dentro da página nós vamos apenas ir até o final e clicar em "Allocate"
+
+
+<div align="center">
+  <img src="/src/step_by_step/elastic_ip_allocate_button.png">
+</div>
+
+Com o Elastic IP criado, clique em "Actions" em seguida "Associate Elastic Ip Address"
+
+<div align="center">
+  <img src="/src/step_by_step/elastic_ip_associate_button.png">
+</div>
+
+Após isso, selecione a instância criada no passo anterior e então vincule o elastic ip a ela clicando em "Associate"
+
+<div align="center">
+  <img src="/src/step_by_step/elastic_ip_associate_step.png">
+</div>
+
