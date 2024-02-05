@@ -60,7 +60,15 @@ Na página inicial vamos clicar em "Launch Instance"
   <img src="/src/step_by_step/ec2_01.png">
 </div>
 
+Logo em seguida vamos selecionar a segunda família como fora requerido nas configuraçoes inciais:
+
+<div align="center">
+  <img src="/src/step_by_step/ec2_image_family.png">
+</div>
+
+
 Após isso entraremos na página de configuração da EC2, no módulo de "Instance Type" vamos selecionar a máquina t3.small como requerida nas configurações iniciais.
+
 
 <div align="center">
   <img src="/src/step_by_step/ec2_02.png">
@@ -83,7 +91,7 @@ No módulo de "Network Settings" é onde vamos aplicar as regras de inbound e ou
 | Portas | Protocolo |
 |:------:|-----------|
 | 22     | TCP       |
-| 111    | TCP       |
+| 111    | TCP/UDP   |
 | 2049   | TCP/UDP   |
 | 80     | TCP       |
 | 443    | TCP       |
@@ -170,6 +178,13 @@ Após isso, selecione a instância criada no passo anterior e então vincule o e
   <img src="/src/step_by_step/elastic_ip_associate_step.png">
 </div>
 
+Pronto! A partir desde momento quando verificarmos as configurações da nosa EC2 nosso elastic ip estará associado.
+
+<div align="center">
+  <img src="/src/step_by_step/final_ec2_summary.png">
+</div>
+
+
 ### Requisitos Linux:
 #### Configurar EFS:
 
@@ -208,8 +223,72 @@ Após isso, selecione a instância criada no passo anterior e então vincule o e
 
 <div align="center">
   <img src="/src/step_by_step/efs_06.png">
-</div>
+</div>  
 
 <div align="center">
   <img src="/src/step_by_step/efs_07.png">
 </div>
+
+
+6. Após a criação do ponto de acesso corretamente no EFS vamos verificar se na seção de "Network" se todas as nossas regras foram colocadas corretamente dentro da EFS através do botão "Manage"
+
+<div align="center">
+  <img src="/src/step_by_step/efs_08.png">
+</div>
+
+
+<div align="center">
+  <img src="/src/step_by_step/efs_09.png">
+</div>
+
+7. Próximo passo é logar na nossa EC2 através da chave gerada nos passos iniciais de configuração da AWS e então vamos executar o seguinte comando:
+
+```bash
+yum -y install amazon-efs-utils
+mkdir /mnt/efs
+```
+
+
+<div align="center">
+  <img src="/src/step_by_step/efs_10.png">
+</div>
+
+
+<div align="center">
+  <img src="/src/step_by_step/efs_11.png">
+</div>
+
+Obs: Caso os comandos inicialmente apontem permissão negada, use o "sudo" no início para executar os comandos como root
+
+8. Montando o EFS na nossa máquina, para isso vamos precisar retornar à pagina do EFS e então copiar o DNS name:
+
+<div align="center">
+  <img src="/src/step_by_step/efs_12.png">
+</div>
+
+Em seguida vamos digitar o seguinte comando no terminal
+```bash
+sudo mount -t efs [DNS_Name_copiado] [local_de_montagem]
+sudo mount -t efs fs-05462f6621439786d.efs.us-east-1.amazonaws.com /mnt/efs
+ ```
+
+Logo após vamos executar o comando para criar uma pasta dentro do EFS com nosso nome, como requerido anteriormente:
+
+```bash
+sudo mkdir /mnt/efs/SeuNome
+```
+ 
+<div align="center">
+  <img src="/src/step_by_step/efs_13.png">
+</div>
+
+Para verificar se o diretórito foi montado corretamente na nossa máquina, vamos executar o comando:
+
+```bash 
+dh -f #Esse comando lista todos os diretórios montados na instância
+```
+<div align="center">
+  <img src="/src/step_by_step/efs_14.png">
+</div>
+
+
