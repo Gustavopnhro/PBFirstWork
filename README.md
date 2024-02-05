@@ -424,7 +424,7 @@ sudo nano /etc/crontab
 5. Edite o código, adicionando o nosso script criado anteriormente:
 
 ```bash
-*/5 * * * * ec2-user sudo /home/ec2-user/status_apache/status_apache.sh >> /mnt/efs/GustavoPinheiro/status_output.txt 2>&1
+*/5 * * * * ec2-user sudo /home/ec2-user/status_apache/status_apache.sh
 ```
 
 6. Para verificar se está tudo funcionando tranquilamente vamos executar o seguinte comando:
