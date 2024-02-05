@@ -28,9 +28,9 @@
 - ✅ Configurar o NFS;
 - ✅ Criar um diretório dentro do filesystem do NFS com seu nome;
 - ✅ Subir um apache no servidor;
-- Criar um script que valide se o serviço está online e envie o resultado para o diretório do NFS;
-- O script deve conter - Dara Hora + Nome do Serviço + Status + Mensagem Personalizada de Online ou Offline
-- O script deve gerar dois arquivos de saída: 1 para o serviço e 1 para o serviço offline;
+- ✅ Criar um script que valide se o serviço está online e envie o resultado para o diretório do NFS;
+- ✅ O script deve conter - Dara Hora + Nome do Serviço + Status + Mensagem Personalizada de Online ou Offline
+- ✅ O script deve gerar dois arquivos de saída: 1 para o serviço e 1 para o serviço offline;
 - Preparar a execução automatizada do script a cada 5 minutos;
 - ✅ Fazer o versionamento da atividade;
 
@@ -339,4 +339,92 @@ sudo systemctl status httpd
 </div>
 
 Essa é a página que precisa retornar para nós!
+
+### Criando o Script de Validação do Serviço
+
+1. Escolher o diretório onde ficará salvo o nosso script, no caso desse laboratório será utilizado o diretório "status_apache":
+
+```bash
+mkdir status_apache
+cd status_apache/
+touch status_apache.sh
+nano status_apache.sh
+```
+
+<div align="center">
+  <img src="/src/step_by_step/script_01.png">
+</div>
+
+
+2. Em seguida escreva dentro do script os seguintes comandos:
+```bash
+#!/bin/bash
+  
+export TZ=America/Sao_Paulo
+DATE=$(date '+%D-%M-%Y %H:%M:%S')
+  
+if systemctl is-active --quiet httpd; then
+ 		STATUS="Online"
+  	MESSAGE="O Apache está online e rodando!"
+  	FILENAME="apache_online.txt"
+else
+  	STATUS="Offline"
+ 		MESSAGE="O Apache está offline."
+  	FILENAME="apache_offline.txt"
+fi
+
+echo "$DATE httpd $STATUS - $MESSAGE" >> /mnt/efs/GustavoPinheiro/status_output.txt
+```
+
+3. Mudar as permissões para que o script consiga ser executado
+
+```bash
+chmod +x status_apache.sh #Mudando as permissões para que o script consiga ser executado
+
+sudo ./status_apache.sh #Executando o script
+```
+<div align="center">
+  <img src="/src/step_by_step/script_02.png">
+</div>
+
+4. Verificando se o script está funcionando para o offline também:
+
+<div align="center">
+  <img src="/src/step_by_step/script_03.png">
+</div>
+
+### Automatizando a verificação para de cada 5 minutos
+
+1. Instalar o Cronie executando os comandos:
+```bash
+sudo yum update -y
+sudo yum install cronie
+```
+
+2. Iniciar o cronie e habilitar ele para iniciar junto com a instância:
+```bash
+sudo systemctl start crond
+sudo systemctl enable crond
+```
+
+3. Verificando se o serviço está funcionando:
+```bash
+sudo systemctl status crond
+```
+
+<div align="center">
+  <img src="/src/step_by_step/cron_01.png">
+</div>
+
+4. Abrindo o arquivo de configuração do cron
+```bash
+sudo nano /etc/crontab
+```
+
+5. Edite o código, adicionando o nosso script criado anteriormente:
+
+```bash
+*/5 * * * * ec2-user sudo /home/ec2-user/status_apache/status_apache.sh >> /mnt/efs/GustavoPinheiro/status_output.txt 2>&1
+```
+
 
