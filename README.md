@@ -25,14 +25,14 @@
 | 443    | TCP       |
 
 #### Linux
-- Configurar o NFS;
-- Criar um diretório dentro do filesystem do NFS com seu nome;
-- Subir um apache no servidor;
+- ✅ Configurar o NFS;
+- ✅ Criar um diretório dentro do filesystem do NFS com seu nome;
+- ✅ Subir um apache no servidor;
 - Criar um script que valide se o serviço está online e envie o resultado para o diretório do NFS;
 - O script deve conter - Dara Hora + Nome do Serviço + Status + Mensagem Personalizada de Online ou Offline
 - O script deve gerar dois arquivos de saída: 1 para o serviço e 1 para o serviço offline;
 - Preparar a execução automatizada do script a cada 5 minutos;
-- ✅ Fazer o ve2rsionamento da atividade;
+- ✅ Fazer o versionamento da atividade;
 
 ### Hands-On 🔨
 
@@ -266,13 +266,13 @@ Obs: Caso os comandos inicialmente apontem permissão negada, use o "sudo" no in
   <img src="/src/step_by_step/efs_12.png">
 </div>
 
-Em seguida vamos digitar o seguinte comando no terminal
+9. Em seguida vamos digitar o seguinte comando no terminal
 ```bash
 sudo mount -t efs [DNS_Name_copiado] [local_de_montagem]
 sudo mount -t efs fs-05462f6621439786d.efs.us-east-1.amazonaws.com /mnt/efs
  ```
 
-Logo após vamos executar o comando para criar uma pasta dentro do EFS com nosso nome, como requerido anteriormente:
+10. Logo após vamos executar o comando para criar uma pasta dentro do EFS com nosso nome, como requerido anteriormente:
 
 ```bash
 sudo mkdir /mnt/efs/SeuNome
@@ -282,7 +282,9 @@ sudo mkdir /mnt/efs/SeuNome
   <img src="/src/step_by_step/efs_13.png">
 </div>
 
-Para verificar se o diretórito foi montado corretamente na nossa máquina, vamos executar o comando:
+
+[EXTRA]
+11. Para verificar se o diretórito foi montado corretamente na nossa máquina, vamos executar o comando:
 
 ```bash 
 dh -f #Esse comando lista todos os diretórios montados na instância
@@ -291,4 +293,50 @@ dh -f #Esse comando lista todos os diretórios montados na instância
   <img src="/src/step_by_step/efs_14.png">
 </div>
 
+
+### Configurar Servidor Apache
+
+1. Para configurarmos um servidor apache dentro deu uma instância primeiramente precisamos atualizar todas as dependências que o sistema possa ter:
+
+- Atualizando todas as eventuais dependências do sistemas;
+```bash
+sudo yum update -y
+```
+
+- Instalando o apache;
+```bash
+sudo yum install httpd
+```
+
+- Iniciando o serviço do sevidor apache;
+```bash
+sudo systemctl start httpd
+```
+
+- Habilitando o apache para iniciar automaticamente após a execução da instância;
+```bash
+sudo systemctl enable httpd
+```
+
+- Verificando a integridade do serviço do apache;
+```bash
+sudo systemctl status httpd
+```
+<div align="center">
+  <img src="/src/step_by_step/apache_01.png">
+</div>
+
+É possível verificar através do "Active: active (running)" que o nosso serviço está saudável e funcionando.
+
+2. Agora, se desejamos verificar a integridade do nosso serviço para além da CLI vamos retornar para a página da nossa instância EC2 criada anteriormente e copiar o Elastic IP que associamos a ela no nosso navegador:
+
+<div align="center">
+  <img src="/src/step_by_step/apache_02.png">
+</div>
+
+<div align="center">
+  <img src="/src/step_by_step/apache_03.png">
+</div>
+
+Essa é a página que precisa retornar para nós!
 
