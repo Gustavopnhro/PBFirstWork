@@ -31,7 +31,7 @@
 - ✅ Criar um script que valide se o serviço está online e envie o resultado para o diretório do NFS;
 - ✅ O script deve conter - Dara Hora + Nome do Serviço + Status + Mensagem Personalizada de Online ou Offline
 - ✅ O script deve gerar dois arquivos de saída: 1 para o serviço e 1 para o serviço offline;
-- Preparar a execução automatizada do script a cada 5 minutos;
+- ✅ Preparar a execução automatizada do script a cada 5 minutos;
 - ✅ Fazer o versionamento da atividade;
 
 ### Hands-On 🔨
@@ -427,4 +427,54 @@ sudo nano /etc/crontab
 */5 * * * * ec2-user sudo /home/ec2-user/status_apache/status_apache.sh >> /mnt/efs/GustavoPinheiro/status_output.txt 2>&1
 ```
 
+6. Para verificar se está tudo funcionando tranquilamente vamos executar o seguinte comando:
 
+```bash
+cat /mnt/efs/GustavoPinheiro/status_output.txt
+```
+
+<div align="center">
+  <img src="/src/step_by_step/cron_02.png">
+</div>
+
+Por fim temos o nosso script validando a cada 
+
+### Automatizando a montagem do EFS e inicialização do Apache
+
+1. Vamos até o diretório de inicialização dos scripts
+
+```bash
+cd /etc/init.d
+```
+
+2. Criar um shell script um nome de sua escolha, o script neste diretório fará com que todas as vezes que a máquina for iniciada esse script seja executado
+
+```bash
+sudo touch init-system.sh
+sudo nano init-system.sh
+```
+
+3. Dentro do "init-system.sh" copie o seguinte comando:
+
+```bash
+#!/bin/bash
+
+sudo mount -t efs fs-05462f6621439786d.efs.us-east-1.amazonaws.com /mnt/efs
+sudo systemctl enable httpd
+sudo systemctl start httpd
+sudo systemctl status httpd
+
+```
+
+4. Mude as permissões para transformar o .sh em um executável
+
+```bash
+sudo chmod +x init-system.sh
+```
+
+5. Dentro do init.d
+```bash
+sudo chmod +x /etc/init.d/init-system.sh
+sudo ln -s /etc/init.d/init-system.sh /etc/rc.d/rc3.d/S99init-system.sh
+sudo reboot
+```
