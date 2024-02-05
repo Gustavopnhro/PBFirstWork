@@ -478,3 +478,21 @@ sudo chmod +x /etc/init.d/init-system.sh
 sudo ln -s /etc/init.d/init-system.sh /etc/rc.d/rc3.d/S99init-system.sh
 sudo reboot
 ```
+
+6. Para verificarmos se o script funcionou corretamente, vamos utilizar o comando:
+
+```bash
+dh -f #Verificar os diretórios que estão montados
+```
+<div align="center">
+  <img src="/src/step_by_step/cron_03.png">
+</div>
+
+
+```bash
+cat /mnt/efs/GustavoPinheiro/status_output.txt #Para verificar se continua apontando corretamente
+```
+
+<div align="center">
+  <img src="/src/step_by_step/cron_04.png">
+</div>
