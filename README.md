@@ -6,10 +6,6 @@
 </div>
 
 
-
-### Requisitos
-- VPC previamente configurada com gateway para internet;
-
 #### AWS:
 - ✅ Gerar chave pública para acesso ao ambiente;
 - ✅ Criar uma instância EC2 com o sistema operacional Amazon Linux 2 (t3.small, 16 GB SSD);
@@ -37,56 +33,56 @@
 ### Hands-On 🔨
 
 ### Requisitos AWS:
-#### Gerar chave pública
-Na seção de "Key Pair" ou "Par de chaves" clique em "Create key pair"
+#### 🔑 Gerar chave pública 🔑
+1. Na seção de "Key Pair" ou "Par de chaves" clique em "Create key pair"
 
 <div align="center">
   <img src="/src/step_by_step/key_pair01.png">
 </div>
 
-Quando o nova seção abrir insira os dados pertinentes para a configuração como nome da cahve a configuração .pem ou .ppk dependendo do tipo de acesso e por fim o tipo de chave RSA ou ED25519, em seguida clique em "Create key pair";
+2. Quando o nova seção abrir insira os dados pertinentes para a configuração como nome da cahve a configuração .pem ou .ppk dependendo do tipo de acesso e por fim o tipo de chave RSA ou ED25519, em seguida clique em "Create key pair";
 
 <div align="center">
   <img src="/src/step_by_step/key_pair02.png">
 </div>
 
 
-#### Configurando a EC2
+####  👷Configurando a EC2 👷
 No módulo de EC2 da AWS temos diversas formas de iniciar uma instancia, mas vamos optar pela mais simples.
 
-Na página inicial vamos clicar em "Launch Instance"
+1. Na página inicial vamos clicar em "Launch Instance"
 
 <div align="center">
   <img src="/src/step_by_step/ec2_01.png">
 </div>
 
-Logo em seguida vamos selecionar a segunda família como fora requerido nas configuraçoes inciais:
+2. Logo em seguida vamos selecionar a segunda família como fora requerido nas configuraçoes inciais:
 
 <div align="center">
   <img src="/src/step_by_step/ec2_image_family.png">
 </div>
 
 
-Após isso entraremos na página de configuração da EC2, no módulo de "Instance Type" vamos selecionar a máquina t3.small como requerida nas configurações iniciais.
+3. Após isso entraremos na página de configuração da EC2, no módulo de "Instance Type" vamos selecionar a máquina t3.small como requerida nas configurações iniciais.
 
 
 <div align="center">
   <img src="/src/step_by_step/ec2_02.png">
 </div>
 
-No módulo de pares de chave vamos adicionar àquela criada na configuração de requisitos anterior a esta, no caso a "minhaNovaChave".     
+4. No módulo de pares de chave vamos adicionar àquela criada na configuração de requisitos anterior a esta, no caso a "minhaNovaChave".     
 
 <div align="center">
   <img src="/src/step_by_step/ec2_03.png">
 </div>
 
-No módulo de "configure storage" vamos colocar a quantidade requerida na atividade de 16gb no gp3 que é um SSD.
+5. No módulo de "configure storage" vamos colocar a quantidade requerida na atividade de 16gb no gp3 que é um SSD.
 
 <div align="center">
   <img src="/src/step_by_step/ec2_04.png">
 </div>
 
-No módulo de "Network Settings" é onde vamos aplicar as regras de inbound e outbond
+6. No módulo de "Network Settings" é onde vamos aplicar as regras de inbound e outbond
 
 | Portas | Protocolo |
 |:------:|-----------|
@@ -100,19 +96,19 @@ No módulo de "Network Settings" é onde vamos aplicar as regras de inbound e ou
   <img src="/src/step_by_step/ec2_05.png">
 </div>
 
-Ao clicarmos em "Add security group rule" vamos adicionar uma regra de grupo de segurança para cada protocolo solicitado, lembrando que nos protocolos que são TCP/UDP vamos configurar duas regras.
+- Ao clicarmos em "Add security group rule" vamos adicionar uma regra de grupo de segurança para cada protocolo solicitado, lembrando que nos protocolos que são TCP/UDP vamos configurar duas regras.
 
-- Porta 22 TCP
+6.1. Porta 22 TCP
 <div align="center">
   <img src="/src/step_by_step/ec2_porta22_tcp.png">
 </div>
 
-- Porta 80 TCP
+6.2. Porta 80 TCP
 <div align="center">
   <img src="/src/step_by_step/ec2_porta80_tcp.png">
 </div>
 
-- Porta 111 TCP/UDP
+6.3. Porta 111 TCP/UDP
 
 <div align="center">
   <img src="/src/step_by_step/ec2_porta111_tcp.png">
@@ -123,12 +119,12 @@ Ao clicarmos em "Add security group rule" vamos adicionar uma regra de grupo de 
   <img src="/src/step_by_step/ec2_porta111_udp.png">
 </div>
 
-- Porta 443
+6.4. Porta 443
 <div align="center">
   <img src="/src/step_by_step/ec2_porta443_tcp.png">
 </div>
 
-- Porta 2049
+6.5. Porta 2049
 <div align="center">
   <img src="/src/step_by_step/ec2_porta2049_tcp.png">
 </div>
@@ -137,14 +133,14 @@ Ao clicarmos em "Add security group rule" vamos adicionar uma regra de grupo de 
   <img src="/src/step_by_step/ec2_porta2049_udp.png">
 </div>
 
-As configurações devem ficar exatamente assim e em seguida vamos clicar em "Launch Instance" quando o resumo da instância estiver assim:
+7. As configurações devem ficar exatamente assim e em seguida vamos clicar em "Launch Instance" quando o resumo da instância estiver assim:
 
 <div align="center">
   <img src="/src/step_by_step/ec2_summary_01.png">
 </div>
 
 
-#### Criando Elastic IP
+#### 📌 Criando Elastic IP 📌
 
 Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "Network and Security" é possível encontrar o "Elastic Ip" assim como na imagem abaixo: 
 
@@ -153,32 +149,32 @@ Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "N
 </div>
 
 
-Em seguida vamos criar em "Allocate Elastic IP address"
+1. Em seguida vamos criar em "Allocate Elastic IP address"
 
 <div align="center">
   <img src="/src/step_by_step/elastic_ip_start_button.png">
 </div>
 
-Dentro da página nós vamos apenas ir até o final e clicar em "Allocate"
+2. Dentro da página nós vamos apenas ir até o final e clicar em "Allocate"
 
 
 <div align="center">
   <img src="/src/step_by_step/elastic_ip_allocate_button.png">
 </div>
 
-Com o Elastic IP criado, clique em "Actions" em seguida "Associate Elastic Ip Address"
+3. Com o Elastic IP criado, clique em "Actions" em seguida "Associate Elastic Ip Address"
 
 <div align="center">
   <img src="/src/step_by_step/elastic_ip_associate_button.png">
 </div>
 
-Após isso, selecione a instância criada no passo anterior e então vincule o elastic ip a ela clicando em "Associate"
+4. Após isso, selecione a instância criada no passo anterior e então vincule o elastic ip a ela clicando em "Associate"
 
 <div align="center">
   <img src="/src/step_by_step/elastic_ip_associate_step.png">
 </div>
 
-Pronto! A partir desde momento quando verificarmos as configurações da nosa EC2 nosso elastic ip estará associado.
+6. Pronto! A partir desde momento quando verificarmos as configurações da nosa EC2 nosso elastic ip estará associado.
 
 <div align="center">
   <img src="/src/step_by_step/final_ec2_summary.png">
@@ -186,7 +182,7 @@ Pronto! A partir desde momento quando verificarmos as configurações da nosa EC
 
 
 ### Requisitos Linux:
-#### Configurar EFS:
+####⚡ Configurar EFS ⚡:
 
 1. Vamos no módulo de EFS e então vamos clicar em "Create File System" como no exemplo abaixo:
 
@@ -241,7 +237,7 @@ Pronto! A partir desde momento quando verificarmos as configurações da nosa EC
   <img src="/src/step_by_step/efs_09.png">
 </div>
 
-7. Próximo passo é logar na nossa EC2 através da chave gerada nos passos iniciais de configuração da AWS e então vamos executar o seguinte comando:
+7. Próximo passo é logar na nossa EC2 através da chave gerada nos passos inici  ais de configuração da AWS e então vamos executar o seguinte comando:
 
 ```bash
 yum -y install amazon-efs-utils
@@ -283,7 +279,7 @@ sudo mkdir /mnt/efs/SeuNome
 </div>
 
 
-[EXTRA]
+🌟 <b> EXTRA </b> 🌟
 11. Para verificar se o diretórito foi montado corretamente na nossa máquina, vamos executar o comando:
 
 ```bash 
@@ -294,31 +290,31 @@ dh -f #Esse comando lista todos os diretórios montados na instância
 </div>
 
 
-### Configurar Servidor Apache
+### 🔌 Configurar Servidor Apache 🔌
 
-1. Para configurarmos um servidor apache dentro deu uma instância primeiramente precisamos atualizar todas as dependências que o sistema possa ter:
+Para configurarmos um servidor apache dentro deu uma instância primeiramente precisamos atualizar todas as dependências que o sistema possa ter:
 
-- Atualizando todas as eventuais dependências do sistemas;
+1. Atualizando todas as eventuais dependências do sistemas;
 ```bash
 sudo yum update -y
 ```
 
-- Instalando o apache;
+2. Instalando o apache;
 ```bash
 sudo yum install httpd
 ```
 
-- Iniciando o serviço do sevidor apache;
+3. Iniciando o serviço do sevidor apache;
 ```bash
 sudo systemctl start httpd
 ```
 
-- Habilitando o apache para iniciar automaticamente após a execução da instância;
+4. Habilitando o apache para iniciar automaticamente após a execução da instância;
 ```bash
 sudo systemctl enable httpd
 ```
 
-- Verificando a integridade do serviço do apache;
+5. Verificando a integridade do serviço do apache;
 ```bash
 sudo systemctl status httpd
 ```
@@ -328,7 +324,7 @@ sudo systemctl status httpd
 
 É possível verificar através do "Active: active (running)" que o nosso serviço está saudável e funcionando.
 
-2. Agora, se desejamos verificar a integridade do nosso serviço para além da CLI vamos retornar para a página da nossa instância EC2 criada anteriormente e copiar o Elastic IP que associamos a ela no nosso navegador:
+6. Agora, se desejamos verificar a integridade do nosso serviço para além da CLI vamos retornar para a página da nossa instância EC2 criada anteriormente e copiar o Elastic IP que associamos a ela no nosso navegador:
 
 <div align="center">
   <img src="/src/step_by_step/apache_02.png">
@@ -338,9 +334,9 @@ sudo systemctl status httpd
   <img src="/src/step_by_step/apache_03.png">
 </div>
 
-Essa é a página que precisa retornar para nós!
+A página acima é a página que precisa retornar para nós!
 
-### Criando o Script de Validação do Serviço
+### ⚙️ Criando o Script de Validação do Serviço ⚙️
 
 1. Escolher o diretório onde ficará salvo o nosso script, no caso desse laboratório será utilizado o diretório "status_apache":
 
@@ -393,7 +389,7 @@ sudo ./status_apache.sh #Executando o script
   <img src="/src/step_by_step/script_03.png">
 </div>
 
-### Automatizando a verificação para de cada 5 minutos
+### 🤖 Automatizando a verificação para de cada 5 minutos 🤖
 
 1. Instalar o Cronie executando os comandos:
 ```bash
@@ -439,7 +435,7 @@ cat /mnt/efs/GustavoPinheiro/status_output.txt
 
 Por fim temos o nosso script validando a cada 
 
-### Automatizando a montagem do EFS e inicialização do Apache
+### 🌟 Automatizando a montagem do EFS e inicialização do Apache 🌟
 
 1. Vamos até o diretório de inicialização dos scripts
 
@@ -492,7 +488,15 @@ dh -f #Verificar os diretórios que estão montados
 ```bash
 cat /mnt/efs/GustavoPinheiro/status_output.txt #Para verificar se continua apontando corretamente
 ```
-
+Exemplo:
 <div align="center">
   <img src="/src/step_by_step/cron_04.png">
+</div>
+
+#
+Agradeço desde já àqueles que chegaram até o final da leitura, espero de coraçao que este laboratório tenha ajudado a esclarecer melhor as ideias relacionadas aos assuntos! 😃
+#
+
+<div align="center">
+  <img src="/src/logo_uol_compass.png" width="170px">
 </div>
