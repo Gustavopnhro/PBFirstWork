@@ -182,7 +182,7 @@ Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "N
 
 
 ### Requisitos Linux:
-####⚡ Configurar EFS ⚡:
+#### ⚡ Configurar EFS ⚡:
 
 1. Vamos no módulo de EFS e então vamos clicar em "Create File System" como no exemplo abaixo:
 
@@ -240,8 +240,9 @@ Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "N
 7. Próximo passo é logar na nossa EC2 através da chave gerada nos passos inici  ais de configuração da AWS e então vamos executar o seguinte comando:
 
 ```bash
-yum -y install amazon-efs-utils
-mkdir /mnt/efs
+sudo yum update
+sudo yum install amazon-efs-utils
+sudo mkdir /mnt/efs
 ```
 
 
@@ -268,6 +269,7 @@ sudo mount -t efs [DNS_Name_copiado] [local_de_montagem]
 sudo mount -t efs fs-05462f6621439786d.efs.us-east-1.amazonaws.com /mnt/efs
  ```
 
+
 10. Logo após vamos executar o comando para criar uma pasta dentro do EFS com nosso nome, como requerido anteriormente:
 
 ```bash
@@ -280,10 +282,10 @@ sudo mkdir /mnt/efs/SeuNome
 
 
 🌟 <b> EXTRA </b> 🌟
-11. Para verificar se o diretórito foi montado corretamente na nossa máquina, vamos executar o comando:
+11. Para verificar se o diretórito foi montado corretamentena nossa máquina, vamos executar o comando:
 
 ```bash 
-dh -f #Esse comando lista todos os diretórios montados na instância
+df -h #Esse comando lista todos os diretórios montados na instância
 ```
 <div align="center">
   <img src="/src/step_by_step/efs_14.png">
@@ -363,13 +365,14 @@ if systemctl is-active --quiet httpd; then
  		STATUS="Online"
   	MESSAGE="O Apache está online e rodando!"
   	FILENAME="apache_online.txt"
+	echo "$DATE httpd $STATUS - $MESSAGE" >> /mnt/efs/GustavoPinheiro/status_online_output.txt
 else
   	STATUS="Offline"
  		MESSAGE="O Apache está offline."
   	FILENAME="apache_offline.txt"
+	echo "$DATE httpd $STATUS - $MESSAGE" >> /mnt/efs/GustavoPinheiro/status_offline_output.txt
 fi
 
-echo "$DATE httpd $STATUS - $MESSAGE" >> /mnt/efs/GustavoPinheiro/status_output.txt
 ```
 
 3. Mudar as permissões para que o script consiga ser executado
@@ -433,7 +436,7 @@ cat /mnt/efs/GustavoPinheiro/status_output.txt
   <img src="/src/step_by_step/cron_02.png">
 </div>
 
-Por fim temos o nosso script validando a cada 
+Por fim temos o nosso script validando a cada 5 minutos como especificado no crontab.
 
 ### 🌟 Automatizando a montagem do EFS e inicialização do Apache 🌟
 
