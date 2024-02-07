@@ -423,13 +423,16 @@ sudo nano /etc/crontab
 5. Edite o código, adicionando o nosso script criado anteriormente:
 
 ```bash
-*/5 * * * * ec2-user sudo /home/ec2-user/status_apache/status_apache.sh
+*/5 * * * * ec2-user sudo /home/ec2-user/status_apache/status_apache.sh 
 ```
+E aperte ctrl+x, y e enter para salvar corretamente o arquivo
 
-6. Para verificar se está tudo funcionando tranquilamente vamos executar o seguinte comando:
+
+6. Para verificar se está tudo funcionando tranquilamente vamos executar os seguintes comandos:
 
 ```bash
-cat /mnt/efs/GustavoPinheiro/status_output.txt
+cat /mnt/efs/GustavoPinheiro/status_online_output.txt
+cat /mnt/efs/GustavoPinheiro/status_offline_output.txt
 ```
 
 <div align="center">
@@ -449,7 +452,6 @@ cd /etc/init.d
 2. Criar um shell script um nome de sua escolha, o script neste diretório fará com que todas as vezes que a máquina for iniciada esse script seja executado
 
 ```bash
-sudo touch init-system.sh
 sudo nano init-system.sh
 ```
 
@@ -473,7 +475,6 @@ sudo chmod +x init-system.sh
 
 5. Dentro do init.d
 ```bash
-sudo chmod +x /etc/init.d/init-system.sh
 sudo ln -s /etc/init.d/init-system.sh /etc/rc.d/rc3.d/S99init-system.sh
 sudo reboot
 ```
@@ -481,7 +482,7 @@ sudo reboot
 6. Para verificarmos se o script funcionou corretamente, vamos utilizar o comando:
 
 ```bash
-dh -f #Verificar os diretórios que estão montados
+df -h #Verificar os diretórios que estão montados
 ```
 <div align="center">
   <img src="/src/step_by_step/cron_03.png">
@@ -489,11 +490,12 @@ dh -f #Verificar os diretórios que estão montados
 
 
 ```bash
-cat /mnt/efs/GustavoPinheiro/status_output.txt #Para verificar se continua apontando corretamente
+cat /mnt/efs/GustavoPinheiro/status_online_output.txt
+cat /mnt/efs/GustavoPinheiro/status_offline_output.txt
 ```
 Exemplo:
 <div align="center">
-  <img src="/src/step_by_step/cron_04.png">
+  <img src="/src/step_by_step/cron_02.png">
 </div>
 
 #
