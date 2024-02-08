@@ -689,7 +689,19 @@ terraform apply
 terraform destroy
 ```
 
-#
+### 📚 Referências 📚
+<b>Get Started - AWS.</b>  Hashicorp. Disponível em: https://developer.hashicorp.com/terraform/tutorials/aws-get-started.
+Acesso em: 08 fev. 2024
+
+<b>Install Terraform.</b> Hashicorp.  Disponível em: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli.
+Acesso em: 08 fev. 2024
+
+<b>Bash Scripting Tutorial – Linux Shell Script and Command Line for Beginners</b>. Freecodecamp. Disponível em: https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/#:~:text=A%20bash%20script%20is%20a,process%20using%20the%20command%20line.
+Acesso em: 08 fev. 2024
+
+<b>How I use cron in Linux.</b> Opensource.  Disponível em: https://opensource.com/article/17/11/how-use-cron-linux
+Acesso em: 08 fev. 2024
+
 #
 Agradeço desde já àqueles que chegaram até o final da leitura, espero de coraçao que este laboratório tenha ajudado a esclarecer melhor as ideias relacionadas aos assuntos! 😃
 #
