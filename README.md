@@ -683,6 +683,12 @@ terraform apply
   <img src="/src/step_by_step/terraform_05.png">
 </div>
 
+
+6. Para apagar toda a estrutura feita anteriormente basta digitar no console o comando:
+```bash
+terraform destroy
+```
+
 #
 #
 Agradeço desde já àqueles que chegaram até o final da leitura, espero de coraçao que este laboratório tenha ajudado a esclarecer melhor as ideias relacionadas aos assuntos! 😃
