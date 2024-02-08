@@ -498,6 +498,192 @@ Exemplo:
   <img src="/src/step_by_step/cron_02.png">
 </div>
 
+### 🌟Automatizando a criação de uma instância usando Terraform🌟
+
+#### Pré-requisitos
+1. Ter a AWS CLI previamente configurada no seu terminal;
+Obs: Documentação oficial disponível em:
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html
+
+#### Instalando Terraform
+No caso em questão vamos usar a versão 1.7.2 (a mais estável no momento atual).
+
+Para consultar a instalação em outros sistemas operacionais consulte o site oficial: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+
+1. Atualizando todo o sistema
+```bash
+sudo apt update
+```
+
+2. Instalando o pacote que vai descompactar o arquivo baixado
+```bash
+sudo apt install unzip
+```
+
+3. Baixando o Terraform
+```bash
+wget https://releases.hashicorp.com/terraform/1.7.2/terraform_1.7.2_linux_amd64.zip
+```
+
+3. Descompactando o terraform
+```bash
+unzip terraform_1.7.2_linux_amd64.zip
+```
+
+4. Movendo o Terraform para o diretório de binários
+```bash
+sudo mv terraform /usr/local/bin/ 
+```
+
+5. Verificando se o Terraform está devidamente instalado
+```bash
+terraform version
+```
+
+<div align="center">
+  <img src="/src/step_by_step/terraform_01.png">
+</div>
+
+#### Criando o arquivo de execução principal 
+1. Criar o arquivo "main.tf"
+```bash
+nano main.tf
+```
+
+2. Em seguida copie o código disponível no main.tf do repositório:
+```bash
+provider "aws" {
+  region = "us-east-1" 
+}
+
+resource "aws_security_group" "securityGroupByTerraform" {
+  name        = "terraform-security-group"
+  description = "Example of security group created by Terraform"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    ingress {
+    from_port   = 111
+    to_port     = 111
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 111
+    to_port     = 111
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+      ingress {
+    from_port   = 2049
+    to_port     = 2049
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 2049
+    to_port     = 2049
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_eip" "createdByTerraform" {
+  instance = aws_instance.createdByTerraform.id
+}
+
+resource "aws_instance" "createdByTerraform" {
+  ami           = "ami-0cf10cdf9fcd62d37" 
+  instance_type = "t3.small"
+  key_name      = "minhaNovaChave"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [aws_security_group.securityGroupByTerraform.id]
+  
+
+  root_block_device {
+    delete_on_termination = true
+  }
+
+  tags = {
+    "Name"       = ""
+    "CostCenter" = ""
+    "Project"    = ""
+  }
+
+  volume_tags = {
+    "Name"       = ""
+    "CostCenter" = ""
+    "Project"    = ""
+  }
+
+  metadata_options {
+    http_tokens             = "required"
+    http_endpoint           = "enabled"
+    http_put_response_hop_limit = 2
+  }
+}
+
+resource "aws_eip_association" "createdByTerraform" {
+  instance_id   = aws_instance.createdByTerraform.id
+  allocation_id = aws_eip.createdByTerraform.id
+}
+```
+
+Aperte Ctrl+X, Y e Enter para salvar
+
+3. Compile o código
+```bash
+terraform init
+```
+<div align="center">
+  <img src="/src/step_by_step/terraform_02.png">
+</div>
+
+4. Execute
+```bash
+terraform apply
+```
+
+<div align="center">
+  <img src="/src/step_by_step/terraform_03.gif">
+</div>
+
+5. Verifique a criação dos recursos
+
+- Security Group
+<div align="center">
+  <img src="/src/step_by_step/terraform_04.png">
+</div>
+
+- Instância e Elastic Ip
+<div align="center">
+  <img src="/src/step_by_step/terraform_05.png">
+</div>
+
+#
 #
 Agradeço desde já àqueles que chegaram até o final da leitura, espero de coraçao que este laboratório tenha ajudado a esclarecer melhor as ideias relacionadas aos assuntos! 😃
 #
