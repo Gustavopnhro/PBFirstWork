@@ -706,7 +706,7 @@ Acesso em: 08 fev. 2024
 Acesso em: 08 fev. 2024
 
 #
-Agradeço desde já àqueles que chegaram até o final da leitura, espero de coraçao que este laboratório tenha ajudado a esclarecer melhor as ideias relacionadas aos assuntos! 😃
+Agradeço desde já àqueles que chegaram até o final da leitura, espero de coração que este laboratório tenha ajudado a esclarecer melhor as ideias relacionadas aos assuntos! 😃
 #
 
 <div align="center">
