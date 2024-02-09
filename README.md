@@ -40,7 +40,7 @@
   <img src="/src/step_by_step/key_pair01.png">
 </div>
 
-2. Quando o nova seção abrir insira os dados pertinentes para a configuração como nome da cahve a configuração .pem ou .ppk dependendo do tipo de acesso e por fim o tipo de chave RSA ou ED25519, em seguida clique em "Create key pair";
+2. Quando o nova seção abrir insira os dados pertinentes para a configuração como nome da chave a configuração .pem ou .ppk dependendo do tipo de acesso e por fim o tipo de chave RSA ou ED25519, em seguida clique em "Create key pair";
 
 <div align="center">
   <img src="/src/step_by_step/key_pair02.png">
@@ -48,41 +48,41 @@
 
 
 ####  👷Configurando a EC2 👷
-No módulo de EC2 da AWS temos diversas formas de iniciar uma instancia, mas vamos optar pela mais simples.
+No módulo de EC2 da AWS temos diversas formas de iniciar uma instância, mas vamos optar pela mais simples:
 
-1. Na página inicial vamos clicar em "Launch Instance"
+1. Na página inicial vamos clicar em "Launch Instance";
 
 <div align="center">
   <img src="/src/step_by_step/ec2_01.png">
 </div>
 
-2. Logo em seguida vamos selecionar a segunda família como fora requerido nas configuraçoes inciais:
+2. Logo em seguida vamos selecionar a segunda família como fora requerido nas configurações inciais;
 
 <div align="center">
   <img src="/src/step_by_step/ec2_image_family.png">
 </div>
 
 
-3. Após isso entraremos na página de configuração da EC2, no módulo de "Instance Type" vamos selecionar a máquina t3.small como requerida nas configurações iniciais.
+3. Após isso, entraremos na página de configuração da EC2 no módulo de "Instance Type", e então vamos selecionar a máquina t3.small como requerida nas configurações iniciais;
 
 
 <div align="center">
   <img src="/src/step_by_step/ec2_02.png">
 </div>
 
-4. No módulo de pares de chave vamos adicionar àquela criada na configuração de requisitos anterior a esta, no caso a "minhaNovaChave".     
+4. No módulo de pares de chave vamos adicionar àquela criada na configuração de requisitos anterior a esta, no caso a "minhaNovaChave"; 
 
 <div align="center">
   <img src="/src/step_by_step/ec2_03.png">
 </div>
 
-5. No módulo de "configure storage" vamos colocar a quantidade requerida na atividade de 16gb no gp3 que é um SSD.
+5. No módulo de "Configure Storage" vamos colocar a quantidade requerida na atividade de 16gb SSD;
 
 <div align="center">
   <img src="/src/step_by_step/ec2_04.png">
 </div>
 
-6. No módulo de "Network Settings" é onde vamos aplicar as regras de inbound e outbond
+6. No módulo de "Network Settings" é onde vamos aplicar as regras de inbound e outbond;
 
 | Portas | Protocolo |
 |:------:|-----------|
@@ -96,9 +96,9 @@ No módulo de EC2 da AWS temos diversas formas de iniciar uma instancia, mas vam
   <img src="/src/step_by_step/ec2_05.png">
 </div>
 
-- Ao clicarmos em "Add security group rule" vamos adicionar uma regra de grupo de segurança para cada protocolo solicitado, lembrando que nos protocolos que são TCP/UDP vamos configurar duas regras.
+- Ao clicarmos em "Add security group rule" adicionaremos uma regra de grupo de segurança para cada protocolo solicitado, lembrando que nos protocolos que são TCP/UDP vamos configurar duas regras.
 
-ObS: Atente-se ao grupo de segurança e a VPC pois vamos usar a mesma VPC no EFS e vamos configurar o security group para os mesmos.
+Obs: Atente-se ao grupo de segurança e a VPC, pois vamos usar a mesma VPC no EFS e vamos configurar o security group para os mesmos.
 
 6.1. Porta 22 TCP
 <div align="center">
@@ -135,7 +135,7 @@ ObS: Atente-se ao grupo de segurança e a VPC pois vamos usar a mesma VPC no EFS
   <img src="/src/step_by_step/ec2_porta2049_udp.png">
 </div>
 
-7. As configurações devem ficar exatamente assim e em seguida vamos clicar em "Launch Instance" quando o resumo da instância estiver assim:
+7. As configurações devem ficar exatamente assim, em seguida vamos clicar em "Launch Instance" quando o resumo da instância estiver assim:
 
 <div align="center">
   <img src="/src/step_by_step/ec2_summary_01.png">
@@ -151,32 +151,32 @@ Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "N
 </div>
 
 
-1. Em seguida vamos criar em "Allocate Elastic IP address"
+1. Em seguida vamos criar em "Allocate Elastic IP address";
 
 <div align="center">
   <img src="/src/step_by_step/elastic_ip_start_button.png">
 </div>
 
-2. Dentro da página nós vamos apenas ir até o final e clicar em "Allocate"
+2. Dentro da página seguiremos até o final e clicaremos em "Allocate";
 
 
 <div align="center">
   <img src="/src/step_by_step/elastic_ip_allocate_button.png">
 </div>
 
-3. Com o Elastic IP criado, clique em "Actions" em seguida "Associate Elastic Ip Address"
+3. Com o Elastic IP criado, clique em "Actions" em seguida "Associate Elastic Ip Address";
 
 <div align="center">
   <img src="/src/step_by_step/elastic_ip_associate_button.png">
 </div>
 
-4. Após isso, selecione a instância criada no passo anterior e então vincule o elastic ip a ela clicando em "Associate"
+4. Após isso, selecione a instância criada no passo anterior e então vincule o elastic ip a ela clicando em "Associate";
 
 <div align="center">
   <img src="/src/step_by_step/elastic_ip_associate_step.png">
 </div>
 
-6. Pronto! A partir desde momento quando verificarmos as configurações da nosa EC2 nosso elastic ip estará associado.
+6. Pronto! A partir desde momento quando verificarmos as configurações da nosa EC2 nosso elastic ip estará associado;
 
 <div align="center">
   <img src="/src/step_by_step/final_ec2_summary.png">
@@ -194,13 +194,13 @@ Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "N
 </div>
 
 
-2. Uma janela nova vai surgir na tela permitindo que seja configurado o nome do EFS (opcional) e a VPC a que ela estará atribuída, vale atentar-se que a VPC deve sera mesma que a EC2 está configurada.
+2. Uma janela nova vai surgir na tela permitindo que seja configurado o nome do EFS (opcional) e a VPC a que ela estará atribuída, vale atentar-se que a VPC deve ser a mesma que a EC2 está configurada;
 
 <div align="center">
   <img src="/src/step_by_step/efs_02.png">
 </div>
 
-3. Após o criar o EFS vamos clicar no seu ID para acessar as configuraçoes;
+3. Após o criar o EFS vamos clicar no seu ID para acessar as configurações;
 
 <div align="center">
   <img src="/src/step_by_step/efs_03.png">
@@ -216,7 +216,7 @@ Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "N
   <img src="/src/step_by_step/efs_05.png">
 </div>
 
-5. Ao abrir a janela de configuração do Access Point vamos configurar o nome (opcional) e ir até o final da página
+5. Ao abrir a janela de configuração do Access Point vamos configurar o nome (opcional) e ir até o final da página;
 
 
 <div align="center">
@@ -228,9 +228,8 @@ Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "N
 </div>
 
 
-6. Após a criação do ponto de acesso corretamente no EFS vamos verificar se na seção de "Network" se todas as nossas regras foram colocadas corretamente dentro da EFS através do botão "Manage"
-
-Obs: O mesmo grupo que foi utilizado na criação da EC2
+6. Após a criação do ponto de acesso corretamente no EFS vamos verificar se na seção de "Network" se todas as nossas regras foram colocadas corretamente dentro da EFS através do botão "Manage";
+Obs: O mesmo grupo que foi utilizado na criação da EC2.
 
 <div align="center">
   <img src="/src/step_by_step/efs_08.png">
@@ -241,7 +240,7 @@ Obs: O mesmo grupo que foi utilizado na criação da EC2
   <img src="/src/step_by_step/efs_09.png">
 </div>
 
-7. Próximo passo é logar na nossa EC2 através da chave gerada nos passos inici  ais de configuração da AWS e então vamos executar o seguinte comando:
+7. Próximo passo é logar na nossa EC2 através da chave gerada nos passos iniciais de configuração da AWS e então vamos executar o seguinte comando:
 
 ```bash
 sudo yum update
@@ -259,22 +258,22 @@ sudo mkdir /mnt/efs
   <img src="/src/step_by_step/efs_11.png">
 </div>
 
-Obs: Caso os comandos inicialmente apontem permissão negada, use o "sudo" no início para executar os comandos como root
+Obs: Caso os comandos inicialmente apontem permissão negada, use o "sudo" no início para executar os comandos como root.
 
-8. Montando o EFS na nossa máquina, para isso vamos precisar retornar à pagina do EFS e então copiar o DNS name:
+8. Montando o EFS na nossa máquina, para isso precisaremos retornar para a pagina do EFS e então copiar o DNS name:
 
 <div align="center">
   <img src="/src/step_by_step/efs_12.png">
 </div>
 
-9. Em seguida vamos digitar o seguinte comando no terminal
+9. Em seguida digitaremos o seguinte comando no terminal
 ```bash
 sudo mount -t efs [DNS_Name_copiado] [local_de_montagem]
 sudo mount -t efs fs-05462f6621439786d.efs.us-east-1.amazonaws.com /mnt/efs
  ```
 
 
-10. Logo após vamos executar o comando para criar uma pasta dentro do EFS com nosso nome, como requerido anteriormente:
+10. Logo após executaremos o comando para criar uma pasta dentro do EFS com nosso nome, como requerido anteriormente:
 
 ```bash
 sudo mkdir /mnt/efs/SeuNome
@@ -286,7 +285,7 @@ sudo mkdir /mnt/efs/SeuNome
 
 
 🌟 <b> EXTRA </b> 🌟
-11. Para verificar se o diretórito foi montado corretamentena nossa máquina, vamos executar o comando:
+11. Para verificar se o diretórito foi montado corretamentena nossa máquina, executaremos o comando:
 
 ```bash 
 df -h #Esse comando lista todos os diretórios montados na instância
@@ -298,7 +297,7 @@ df -h #Esse comando lista todos os diretórios montados na instância
 
 ### 🔌 Configurar Servidor Apache 🔌
 
-Para configurarmos um servidor apache dentro deu uma instância primeiramente precisamos atualizar todas as dependências que o sistema possa ter:
+Para configurarmos um servidor apache dentro de uma instância primeiramente precisamos atualizar todas as dependências que o sistema possa ter:
 
 1. Atualizando todas as eventuais dependências do sistemas;
 ```bash
@@ -379,7 +378,7 @@ fi
 
 ```
 
-3. Mudar as permissões para que o script consiga ser executado
+3. Mudar as permissões para que o script consiga ser executado;
 
 ```bash
 chmod +x status_apache.sh #Mudando as permissões para que o script consiga ser executado
@@ -419,7 +418,7 @@ sudo systemctl status crond
   <img src="/src/step_by_step/cron_01.png">
 </div>
 
-4. Abrindo o arquivo de configuração do cron
+4. Abrindo o arquivo de configuração do cron;
 ```bash
 sudo nano /etc/crontab
 ```
@@ -429,7 +428,7 @@ sudo nano /etc/crontab
 ```bash
 */5 * * * * ec2-user sudo /home/ec2-user/status_apache/status_apache.sh 
 ```
-E aperte ctrl+x, y e enter para salvar corretamente o arquivo
+E aperte ctrl+x, y e enter para salvar corretamente o arquivo.
 
 
 6. Para verificar se está tudo funcionando tranquilamente vamos executar os seguintes comandos:
@@ -447,13 +446,13 @@ Por fim temos o nosso script validando a cada 5 minutos como especificado no cro
 
 ### 🌟 Automatizando a montagem do EFS e inicialização do Apache 🌟
 
-1. Vamos até o diretório de inicialização dos scripts
+1. Vamos até o diretório de inicialização dos scripts;
 
 ```bash
 cd /etc/init.d
 ```
 
-2. Criar um shell script um nome de sua escolha, o script neste diretório fará com que todas as vezes que a máquina for iniciada esse script seja executado
+2. Criar um shell script um nome de sua escolha, o script neste diretório fará com que todas as vezes que a máquina for iniciada esse script seja executado;
 
 ```bash
 sudo nano init-system.sh
@@ -471,7 +470,7 @@ sudo systemctl status httpd
 
 ```
 
-4. Mude as permissões para transformar o .sh em um executável
+4. Mude as permissões para transformar o .sh em um executável;
 
 ```bash
 sudo chmod +x init-system.sh
@@ -514,32 +513,32 @@ No caso em questão vamos usar a versão 1.7.2 (a mais estável no momento atual
 
 Para consultar a instalação em outros sistemas operacionais consulte o site oficial: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
-1. Atualizando todo o sistema
+1. Atualizando todo o sistema;
 ```bash
 sudo apt update
 ```
 
-2. Instalando o pacote que vai descompactar o arquivo baixado
+2. Instalando o pacote que vai descompactar o arquivo baixado;
 ```bash
 sudo apt install unzip
 ```
 
-3. Baixando o Terraform
+3. Baixando o Terraform;
 ```bash
 wget https://releases.hashicorp.com/terraform/1.7.2/terraform_1.7.2_linux_amd64.zip
 ```
 
-3. Descompactando o terraform
+3. Descompactando o terraform;
 ```bash
 unzip terraform_1.7.2_linux_amd64.zip
 ```
 
-4. Movendo o Terraform para o diretório de binários
+4. Movendo o Terraform para o diretório de binários;
 ```bash
 sudo mv terraform /usr/local/bin/ 
 ```
 
-5. Verificando se o Terraform está devidamente instalado
+5. Verificando se o Terraform está devidamente instalado;
 ```bash
 terraform version
 ```
@@ -549,7 +548,7 @@ terraform version
 </div>
 
 #### Criando o arquivo de execução principal 
-1. Criar o arquivo "main.tf"
+1. Criar o arquivo "main.tf";
 ```bash
 nano main.tf
 ```
@@ -656,9 +655,9 @@ resource "aws_eip_association" "createdByTerraform" {
 }
 ```
 
-Aperte Ctrl+X, Y e Enter para salvar
+Aperte Ctrl+X, Y e Enter para salvar.
 
-3. Compile o código
+3. Compile o código;
 ```bash
 terraform init
 ```
@@ -666,7 +665,7 @@ terraform init
   <img src="/src/step_by_step/terraform_02.png">
 </div>
 
-4. Execute
+4. Execute;
 ```bash
 terraform apply
 ```
@@ -675,14 +674,14 @@ terraform apply
   <img src="/src/step_by_step/terraform_03.gif">
 </div>
 
-5. Verifique a criação dos recursos
+5. Verifique a criação dos recursos;
 
 - Security Group
 <div align="center">
   <img src="/src/step_by_step/terraform_04.png">
 </div>
 
-- Instância e Elastic Ip
+- Instância e Elastic Ip;
 <div align="center">
   <img src="/src/step_by_step/terraform_05.png">
 </div>
