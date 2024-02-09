@@ -98,6 +98,8 @@ No módulo de EC2 da AWS temos diversas formas de iniciar uma instancia, mas vam
 
 - Ao clicarmos em "Add security group rule" vamos adicionar uma regra de grupo de segurança para cada protocolo solicitado, lembrando que nos protocolos que são TCP/UDP vamos configurar duas regras.
 
+ObS: Atente-se ao grupo de segurança e a VPC pois vamos usar a mesma VPC no EFS e vamos configurar o security group para os mesmos.
+
 6.1. Porta 22 TCP
 <div align="center">
   <img src="/src/step_by_step/ec2_porta22_tcp.png">
@@ -227,6 +229,8 @@ Ainda no módulo de EC2 na lateral esquerda haverá um painel e na seção de "N
 
 
 6. Após a criação do ponto de acesso corretamente no EFS vamos verificar se na seção de "Network" se todas as nossas regras foram colocadas corretamente dentro da EFS através do botão "Manage"
+
+Obs: O mesmo grupo que foi utilizado na criação da EC2
 
 <div align="center">
   <img src="/src/step_by_step/efs_08.png">
